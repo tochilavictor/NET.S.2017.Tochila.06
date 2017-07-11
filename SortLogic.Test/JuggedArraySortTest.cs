@@ -11,10 +11,6 @@ namespace SortLogic.Test
     [TestFixture()]
     public class JuggedArraySortTest
     { 
-        
-        public void BubbleSortMatrix_SumGrowingNormalArray_PositiveTest()
-        {
-            
-        }
+       
     }
 }

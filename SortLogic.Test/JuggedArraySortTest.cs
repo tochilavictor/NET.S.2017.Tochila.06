@@ -18,7 +18,7 @@ namespace SortLogic.Test
             new int[] { 50, 50 },ExpectedResult = true)]
         public bool BubbleSort_SumAscendingCriterium_PositiveTest(params int[][] array)
         {
-            JuggedArraySort.BubbleSort.Sort(array,new JuggedSum());
+            JuggedArraySort1.Sort(array,new JuggedSum());
             for (int i = 0; i < array.Length-1; i++)
             {
                 if (array[i].Sum() > array[i + 1].Sum()) return false;
@@ -33,7 +33,7 @@ namespace SortLogic.Test
             new int[] { 50, 50 }, ExpectedResult = true)]
         public bool BubbleSort_SumDescendingCriterium_PositiveTest(params int[][] array)
         {
-            JuggedArraySort.BubbleSort.Sort(array, new JuggedSum(),false);
+            JuggedArraySort1.Sort(array, new JuggedSumDescending());
             for (int i = 0; i < array.Length - 1; i++)
             {
                 if (array[i].Sum() < array[i + 1].Sum()) return false;
@@ -48,7 +48,7 @@ namespace SortLogic.Test
             new int[] { 50, 50 }, ExpectedResult = true)]
         public bool BubbleSort_MaxAscendingCriterium_PositiveTest(params int[][] array)
         {
-            JuggedArraySort.BubbleSort.Sort(array, new JuggedMax());
+            JuggedArraySort1.Sort(array, new JuggedMax());
             for (int i = 0; i < array.Length - 1; i++)
             {
                 if (array[i].Max() > array[i + 1].Max()) return false;
@@ -63,7 +63,7 @@ namespace SortLogic.Test
             new int[] { 50, 50 }, ExpectedResult = true)]
         public bool BubbleSort_MaxDescendingCriterium_PositiveTest(params int[][] array)
         {
-            JuggedArraySort.BubbleSort.Sort(array, new JuggedMax(),false);
+            JuggedArraySort1.Sort(array, new JuggedMax());
             for (int i = 0; i < array.Length - 1; i++)
             {
                 if (array[i].Max() < array[i + 1].Max()) return false;
@@ -78,7 +78,7 @@ namespace SortLogic.Test
             new int[] { 50, 50 }, ExpectedResult = true)]
         public bool BubbleSort_MinAscendingCriterium_PositiveTest(params int[][] array)
         {
-            JuggedArraySort.BubbleSort.Sort(array, new JuggedMin());
+            JuggedArraySort1.Sort(array, new JuggedMin());
             for (int i = 0; i < array.Length - 1; i++)
             {
                 if (array[i].Min() > array[i + 1].Min()) return false;
@@ -93,7 +93,7 @@ namespace SortLogic.Test
             new int[] { 50, 50 }, ExpectedResult = true)]
         public bool BubbleSort_MinDescendingCriterium_PositiveTest(params int[][] array)
         {
-            JuggedArraySort.BubbleSort.Sort(array, new JuggedMin(), false);
+            JuggedArraySort1.Sort(array, new JuggedMin());
             for (int i = 0; i < array.Length - 1; i++)
             {
                 if (array[i].Min() < array[i + 1].Min()) return false;
@@ -101,7 +101,7 @@ namespace SortLogic.Test
             return true;
         }
     }
-    public class JuggedSum : JuggedArraySort.IComparer
+    public class JuggedSum : IComparer
     {
         public int CompareTo(int[] lhs, int[] rhs)
         {
@@ -110,7 +110,16 @@ namespace SortLogic.Test
             return -1;
         }
     }
-    public class JuggedMax : JuggedArraySort.IComparer
+    public class JuggedSumDescending : IComparer
+    {
+        public int CompareTo(int[] lhs, int[] rhs)
+        {
+            if (lhs.Sum() == rhs.Sum()) return 0;
+            if (lhs.Sum() < rhs.Sum()) return 1;
+            return -1;
+        }
+    }
+    public class JuggedMax : IComparer
     {
         public int CompareTo(int[] lhs, int[] rhs)
         {
@@ -119,7 +128,7 @@ namespace SortLogic.Test
             return -1;
         }
     }
-    public class JuggedMin : JuggedArraySort.IComparer
+    public class JuggedMin : IComparer
     {
         public int CompareTo(int[] lhs, int[] rhs)
         {

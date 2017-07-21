@@ -40,7 +40,7 @@ namespace SortLogic
         /// </summary>
         /// <param name="array">array</param>
         /// <param name="compasion">delegate provides comparing logic</param>
-        public static void Sort(int[][] array, Func<int[], int[], int> compasion)
+        public static void Sort(int[][] array, Comparison<int[]> compasion)
         {
             ValidateArray(array);
             if (compasion == null) throw new ArgumentNullException();
@@ -63,8 +63,8 @@ namespace SortLogic
 
         private class ComparisionToComparer : IComparer
         {
-            private Func<int[], int[], int> comparer;
-            public ComparisionToComparer(Func<int[], int[], int> comparer)
+            private Comparison<int[]> comparer;
+            public ComparisionToComparer(Comparison<int[]> comparer)
             {
                 this.comparer = comparer;
             }
